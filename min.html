@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <title>How do designers collaborate?</title>
+    <style>
+      body, html { font-size: 12pt; font-family: 'Times'}
+      figure { margin: 0; padding: 0; }
+      figcaption { font-style: italic; margin: 1rem 0; transform: rotate(0); text-align: center; }
+      h2 { margin: 0; padding: 0; font-family: 'Superior-Book'; font-weight: normal; font-size: 22pt; }
+      h1 { font-family: 'PrismasetLL-Stencil'; font-size: 12rem; font-weight: normal; }
+      .intro p { font-size: 1.5rem; }
+      .📖-footnote { font-size: 8pt; }
+      .big-figure, img { width: 100%; }
+      li { list-style-type: none; margin-bottom: .5rem; font-weight: bold; }
+      li span {font-weight: normal; }
+      .med-figure { height: 100%; }
+      .page-number { margin: 0 1.5rem; }
+      .intro p:nth-child(even) { padding-left: .4in; }
+      .photogrid { display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: .25in;
+        grid-template-rows: auto;
+      }
+      h2 + p { line-height: 1.3rem; text-rendering: optimizeLegibility; }
+      .photogrid.two { grid-template-columns: 1fr; }
+      /* .page-number { display: block; transform:rotate(5deg); font-style: normal; position: relative; top: 5.25in; font-size: 124pt; color: grey; mix-blend-mode: multiply;}  */
+      .bindery-sup { font-size: 7pt; font-weight: bold; line-height: 0;}
+    </style>
+    </head>
+    <body>
+      <div id="content">
+
+        <h2>Group share</h2><p>One larger task is done by multiple people in the same space. This happens when many hands are needed, or the complexity of a task benefits from many brains and hands and specialties. This often requires coordination and teamwork. Worked shared by a group may have a leader who works through how to share the work (in real-time). Group shares are helpful when the physical size of a project is large: building a phone booth or a large table. This method of collaboration is common because it’s visible and when used, often quite necessary. A group share can lead to a group split.</p>
+
+
+      </div>
+      <script src="https://unpkg.com/bindery"></script>
+      <script src="https://unpkg.com/bindery-controls"></script>
+
+      <script>
+        Bindery.makeBook({
+          content: '#content',
+          pageSetup: {
+            size: { width: '5.5in', height: '8.5in' },
+            margin: { top: '68pt', inner: '5pc', outer: '6pc', bottom: '50pt' },
+        },
+          rules: [
+            Bindery.PageBreak({ selector: ".page-break", position: "before", continue: "next" }),
+            Bindery.PageBreak({ selector: 'h2', position: 'before' }),
+            Bindery.PageBreak({ selector: '.index-content', position: 'before', continue: "left" }),
+            Bindery.PageBreak({ selector: 'h1', position: 'after' }),
+            Bindery.PageReference({
+              selector: '.index-content li',
+              createTest: (el) => {
+                const searchTerm = el.textContent.toLowerCase().trim();
+                return (page) => {
+                  const textOfPage = page.textContent.toLowerCase();
+                  return textOfPage.includes(searchTerm);
+                }
+              },
+            }),
+
+            Bindery.Footnote({
+              selector: 'p > a',
+              render: (element, number) => {
+                return '#' + number + ' ' + element.href;
+              }
+            }),
+
+            Bindery.RunningHeader({
+              render: (page) => {
+                const nullPageSelectors = [
+                  "h1",
+                  ".index-content",
+                ];
+                if (page.isEmpty) return "";
+                else if (page.element.querySelector(nullPageSelectors.join(", "))) return "";
+                else if (page.isLeft) return `<span class="page-number">${page.number}</span> `;
+                else if (page.isRight) return `<em>How do designers collaborate? </em><span class="page-number">${page.number}</span>`;
+              },
+            }),
+              Bindery.FullBleedPage({
+              selector: '.med-figure',
+              continue: 'same'
+            }),
+
+            Bindery.FullBleedSpread({ selector: ".big-figure", continue: "next" }),
+          ],
+        });
+      </script>
+
+</body>
+</html>
