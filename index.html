@@ -2,13 +2,41 @@
   <head>
     <title>How do designers collaborate?</title>
     <style>
-      body, html { font-size: 12pt; font-family: 'Times'}
+      @font-face {
+	font-family: 'cmu';
+	font-weight: italic;
+	src: 
+		 url('sitecss/cmunti.woff') format('woff'), /* Pretty Modern Browsers */
+		 url('sitecss/cmunti.ttf')  format('truetype'), /* Safari, Android, iOS */
+		 url('sitecss/cmunti.svg') format('svg'); /* Legacy iOS */
+
+  }
+@font-face {
+	font-family: 'cmu';
+	font-weight: normal;
+	src: 
+		 url('sitecss/cmunrm.woff') format('woff'), /* Pretty Modern Browsers */
+		 url('sitecss/cmunrm.ttf')  format('truetype'), /* Safari, Android, iOS */
+		 url('sitecss/cmunrm.svg') format('svg'); /* Legacy iOS */
+  }
+  @font-face {
+	font-family: 'cmu';
+	font-weight: bold;
+	src: 
+		 url('sitecss/cmunbx.woff') format('woff'), /* Pretty Modern Browsers */
+		 url('sitecss/cmunbx.ttf')  format('truetype'), /* Safari, Android, iOS */
+		 url('sitecss/cmunbx.svg') format('svg'); /* Legacy iOS */
+		}
+  
+  
+      body, html { font-size: 12pt; font-family: 'cmu'}
       figure { margin: 0; padding: 0; }
       figcaption { font-style: italic; margin: 1rem 0; transform: rotate(0); text-align: center; }
-      h2 { margin: 0; padding: 0; font-family: 'Superior-Book'; font-weight: normal; font-size: 22pt; }
-      h1 { font-family: 'PrismasetLL-Stencil'; font-size: 12rem; font-weight: normal; }
+      h2 { margin: 0; padding: 0; font-family: 'cmu'; font-weight: normal; font-size: 22pt; }
+      h1 { font-family: 'cmu'; font-size: 9rem; font-weight: normal; line-height: 90%; word-spacing: .2rem;  word-break: break-all;
+    }
       .intro p { font-size: 1.5rem; }
-      .📖-footnote { font-size: 8pt; }
+      .📖-footnote { font-size: 8pt; margin-top: 1rem; }
       .big-figure, img { width: 100%; }
       li { list-style-type: none; margin-bottom: .5rem; font-weight: bold; }
       li span {font-weight: normal; }
@@ -61,7 +89,7 @@
 
         <h2>Active hand-off</h2><p>One person designs, then hands to the next person. More than two people should be involved. This process is a more intricate version of back and forth, but worth separating out. Active hand-offs involve stages, where each person pushes the project forward. When a stage is complete, the work moves on. Besides the number of people, another point of differentiation with back and forth is that the next person or next stage isn’t always known. As a project develops, it may be clear that a person’s involvement is needed. Hand-offs usually require meetings, explaining, etc.</p>
         <figure class="">
-          <img src="P1242314-940x705.jpg">
+          <img src="ppf.jpg">
           <figcaption>Paper Football Workshop, 2013</figcaption>
         </figure>
 
@@ -138,7 +166,13 @@
 
         <h2>Group share</h2><p>One larger task is done by multiple people in the same space. This happens when many hands are needed, or the complexity of a task benefits from many brains and hands and specialties. This often requires coordination and teamwork. Worked shared by a group may have a leader who works through how to share the work (in real-time). Group shares are helpful when the physical size of a project is large: building a phone booth or a large table. This method of collaboration is common because it’s visible and when used, often quite necessary. A group share can lead to a group split.</p>
 
+
         <h2>Group split</h2><p>One larger task is broken up into smaller tasks that are then recombined or synthesized. Larger task may be known (have been planned out) or unknown (needs to be discovered). This is how many websites are created: everyone has specific tasks that get pulled together into one usable end form.</p>
+
+        <figure class="big-figure">
+          <img src="P7082958.JPG">
+          <figcaption></figcaption>
+        </figure>
 
 
         <div class="index-content">
@@ -192,7 +226,7 @@
             Bindery.RunningHeader({
               render: (page) => {
                 const nullPageSelectors = [
-                  ".full-bleed-page",
+                ".full-bleed-page",
                   ".title-section",
                   ".credits-section",
                   ".chapter-title",
